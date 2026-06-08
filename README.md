@@ -111,18 +111,6 @@ contaviva-edu/
 
 ---
 
-## Deploy
-
-### Vercel (recomendado)
-
-1. Acesse [vercel.com/new](https://vercel.com/new) → importe `tamashiroBR/contaviva-edu`.
-2. Vercel detecta Vite automaticamente — clique **Deploy**.
-3. Todo `git push` na `main` publica uma nova versão.
-
-URL de produção: **<https://contaviva-edu.vercel.app>**
-
----
-
 ## Customizar o plano de contas
 
 Edite o array `CONTAS` em `src/App.jsx`:
