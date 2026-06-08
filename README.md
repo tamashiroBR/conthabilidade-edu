@@ -95,7 +95,7 @@ npm run preview  # pré-visualizar o build localmente
 ## Estrutura do projeto
 
 ```
-contaviva-edu/
+conthabilidade-edu/
 ├─ src/
 │  ├─ App.jsx            # toda a aplicação (Conceitos + Razonetes + Estoque)
 │  └─ main.jsx           # bootstrap React + shim window.storage → localStorage
