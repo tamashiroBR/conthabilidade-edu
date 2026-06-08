@@ -1,4 +1,4 @@
-# ContaViva Edu
+# ContHabilidade Edu
 
 > Plataforma interativa para o ensino de contabilidade básica — conceitos, razonetes, lançamentos mistos e avaliação de estoques.
 
@@ -11,7 +11,7 @@
 
 ## Visão geral
 
-O **ContaViva Edu** é uma ferramenta 100% web (React + Vite) voltada para estudantes e professores de contabilidade. Sem instalação para o aluno — basta abrir o navegador.
+O **ContHabilidade Edu** é uma ferramenta 100% web (React + Vite) voltada para estudantes e professores de contabilidade. Sem instalação para o aluno — basta abrir o navegador.
 
 | Módulo | O que faz |
 |--------|-----------|
