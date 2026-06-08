@@ -5,8 +5,7 @@ import {
 } from "lucide-react";
 
 /* ============================================================================
-   ContaViva Edu — Aprenda contabilidade na prática
-   Conceitos · Laboratório de Razonetes · Exercícios corrigidos
+   ContaViva Edu — Aprenda contabilidade
    ========================================================================== */
 
 /* plano de contas didático */
@@ -35,25 +34,6 @@ const GRUPO_INFO = {
   Receita: { nat: "C", aumenta: "crédito", cor: "#dc3545" },
 };
 
-const EXERCICIOS = [
-  { id: 1, enunciado: "Os sócios integralizam R$ 100.000 em dinheiro, depositados na conta bancária da empresa.", valor: 100000, d: "bancos", c: "capital",
-    expl: "Entrou dinheiro no banco (Ativo ↑, debita) e surgiu a obrigação com os sócios via Capital Social (PL ↑, credita)." },
-  { id: 2, enunciado: "A empresa compra mercadorias à vista, pagando R$ 20.000 em dinheiro.", valor: 20000, d: "merc", c: "caixa",
-    expl: "Mercadorias (Ativo ↑, debita) e Caixa (Ativo ↓, credita). É uma permutação dentro do Ativo: troca dinheiro por estoque." },
-  { id: 3, enunciado: "A empresa compra mercadorias a prazo no valor de R$ 15.000.", valor: 15000, d: "merc", c: "fornec",
-    expl: "Mercadorias aumentam o Ativo (debita) e surge a dívida com Fornecedores (Passivo ↑, credita)." },
-  { id: 4, enunciado: "A empresa paga R$ 5.000 a um fornecedor, via banco.", valor: 5000, d: "fornec", c: "bancos",
-    expl: "A dívida com Fornecedores diminui (Passivo ↓, debita) e o saldo em Bancos diminui (Ativo ↓, credita)." },
-  { id: 5, enunciado: "Venda de mercadorias à vista por R$ 8.000, recebidos em dinheiro.", valor: 8000, d: "caixa", c: "receita",
-    expl: "Entrou dinheiro no Caixa (Ativo ↑, debita) e foi reconhecida a Receita de Vendas (Receita ↑, credita)." },
-  { id: 6, enunciado: "Pagamento do aluguel do mês, R$ 2.000, via banco.", valor: 2000, d: "despaluguel", c: "bancos",
-    expl: "Surge a Despesa de Aluguel (Despesa ↑, debita) e o saldo em Bancos diminui (Ativo ↓, credita)." },
-  { id: 7, enunciado: "A empresa obtém um empréstimo bancário de R$ 30.000, creditado em conta.", valor: 30000, d: "bancos", c: "emprest",
-    expl: "Entrou dinheiro em Bancos (Ativo ↑, debita) e surgiu a obrigação Empréstimos a Pagar (Passivo ↑, credita)." },
-  { id: 8, enunciado: "Compra de móveis para o escritório, R$ 12.000, a prazo.", valor: 12000, d: "moveis", c: "fornec",
-    expl: "Móveis e Utensílios aumentam o Ativo (debita) e surge a obrigação com Fornecedores (Passivo ↑, credita)." },
-];
-
 const fmt = (n) => "R$ " + (Number(n) || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 /* ============================ APP ============================ */
@@ -66,7 +46,7 @@ export default function App() {
         <header className="edu-head">
           <div className="edu-brand">
             <div className="edu-logo"><GraduationCap size={22} /></div>
-            <div><h1>ContaViva <span>Edu</span></h1><p>aprenda contabilidade na prática</p></div>
+            <div><h1>ContaViva <span>Edu</span></h1><p>aprenda contabilidade</p></div>
           </div>
           <nav className="edu-nav">
             {[["conceitos", "Conceitos", BookOpen], ["lab", "Razonetes", FlaskConical], ["estoque", "Estoque", Package]]
