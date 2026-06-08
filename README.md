@@ -72,7 +72,7 @@ Razonetes gerados automaticamente para cada conta movimentada, com saldo calcula
 **Requisitos:** Node.js 18+ (testado com Node 22).
 
 ```bash
-git clone https://github.com/tamashiroBR/contaviva-edu.git
+git clone https://github.com/tamashiroBR/conthabilidade-edu.git
 cd contaviva-edu
 npm install
 npm run dev
