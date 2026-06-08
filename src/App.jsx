@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 
 /* ============================================================================
-   ContaViva Edu — Aprenda contabilidade
+   ContHabilidade Edu — Ferramenta Educacional
    ========================================================================== */
 
 /* plano de contas didático */
@@ -46,7 +46,7 @@ export default function App() {
         <header className="edu-head">
           <div className="edu-brand">
             <div className="edu-logo"><GraduationCap size={22} /></div>
-            <div><h1>ContaViva <span>Edu</span></h1><p>aprenda contabilidade</p></div>
+            <div><h1>ContHabilidade <span>Edu</span></h1><p>Ferramenta educacional</p></div>
           </div>
           <nav className="edu-nav">
             {[["conceitos", "Conceitos", BookOpen], ["lab", "Razonetes", FlaskConical], ["estoque", "Estoque", Package]]
