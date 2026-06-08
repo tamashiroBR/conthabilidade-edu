@@ -46,7 +46,7 @@ export default function App() {
         <header className="edu-head">
           <div className="edu-brand">
             <div className="edu-logo"><GraduationCap size={22} /></div>
-            <div><h1>ContHabilidade <span>Edu</span></h1><p>Ferramenta educacional</p></div>
+            <div><h1>ContHabilidade <span>Edu</span></h1><p>Pratique Contabilidade</p></div>
           </div>
           <nav className="edu-nav">
             {[["conceitos", "Conceitos", BookOpen], ["lab", "Razonetes", FlaskConical], ["estoque", "Estoque", Package]]
