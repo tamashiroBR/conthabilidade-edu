@@ -1,78 +1,107 @@
-# ContaViva Edu — Aprenda Contabilidade na Prática
+# ContaViva Edu
 
-Ferramenta interativa de ensino de contabilidade básica. Voltada para estudantes,
-professores e qualquer pessoa que queira entender o mecanismo de débito e crédito,
-a equação patrimonial e os lançamentos contábeis fundamentais.
+> Plataforma interativa para o ensino de contabilidade básica — conceitos, razonetes, lançamentos mistos e avaliação de estoques.
+
+[![Deploy Vercel](https://img.shields.io/badge/Vercel-deployed-black?logo=vercel)](https://contaviva-edu.vercel.app)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-active-blue?logo=github)](https://tamashirobr.github.io/contaviva-edu/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite)](https://vitejs.dev)
 
 ---
 
-## O que tem no app
+## Visão geral
+
+O **ContaViva Edu** é uma ferramenta 100% web (React + Vite) voltada para estudantes e professores de contabilidade. Sem instalação para o aluno — basta abrir o navegador.
+
+| Módulo | O que faz |
+|--------|-----------|
+| **Conceitos** | Equação patrimonial, natureza das contas (razonete interativo), partidas dobradas |
+| **Razonetes** | Laboratório de lançamentos com balança patrimonial ao vivo e alertas didáticos |
+| **Estoque** | Fichas PEPS, UEPS e Custo Médio com comparativo de CMV |
+
+---
+
+## Funcionalidades
 
 ### 📖 Conceitos
-- Equação patrimonial (Ativo = Passivo + PL) em destaque.
-- Painel interativo de natureza das contas: clique em Ativo, Passivo, PL, Receita
-  ou Despesa e veja o razonete demonstrar de que lado a conta aumenta.
+- Equação patrimonial **Ativo = Passivo + PL** em destaque.
+- Painel interativo por grupo de conta: clique em *Ativo*, *Passivo*, *PL*, *Receita* ou *Despesa* e veja o razonete mostrar de que lado a conta aumenta.
 - Explicação das partidas dobradas e do razonete (conta T).
-- Atalho mental para nunca esquecer qual lado é débito e qual é crédito.
+- Atalho mental: Ativo/Despesa → natureza devedora; Passivo/PL/Receita → natureza credora.
 
 ### 🧪 Laboratório de Razonetes
-- Lance qualquer fato contábil: escolha a conta a débito, a conta a crédito
-  e os valores (podem ser diferentes — a balança tomba e mostra o desequilíbrio).
-- Botões de exemplos rápidos (integralização, compra, venda, despesa).
-- Razonetes (T-accounts) gerados automaticamente para cada conta movimentada,
-  com saldo calculado na natureza correta.
-- **Balança patrimonial ao vivo**: inclina quando débito ≠ crédito, permanece
-  nivelada quando a equação está equilibrada.
-- Feedback em linguagem natural: "Bancos (Ativo) → aumentou. Capital (PL) → aumentou."
 
-### 🎯 Exercícios
-- 8 fatos contábeis clássicos do início de uma empresa.
-- Para cada fato, o aluno escolhe qual conta debitar e qual creditar.
-- Correção imediata com explicação pedagógica detalhada.
-- Botão de Dica para quem travar.
-- Progresso salvo no navegador entre sessões (localStorage).
-- Barra de progresso e navegação por pontos entre exercícios.
+**Lançamentos simples, compostos e mistos**
+
+O formulário tem duas colunas independentes (DÉBITO / CRÉDITO), cada uma com linhas ilimitadas:
+
+| Tipo | Exemplo |
+|------|---------|
+| **Simples** (1D/1C) | Integralização de capital |
+| **Composto** (2D/1C ou 1D/2C) | Venda parte à vista, parte a prazo |
+| **Misto** (ND/NC) | Folha de pagamento |
+
+**Balança patrimonial ao vivo** — inclina quando Débito ≠ Crédito; permanece nivelada quando a equação está equilibrada.
+
+**Sistema de alertas didáticos** — aparece somente após o usuário preencher valores nos dois lados:
+
+| Alerta | Tipo |
+|--------|------|
+| Mesma conta no débito e no crédito | 🔴 Erro (bloqueia o lançamento) |
+| Total débito ≠ total crédito | 🔴 Erro |
+| Débito em conta de Receita | 🟡 Aviso pedagógico |
+| Crédito em conta de Despesa | 🟡 Aviso pedagógico |
+| Tudo correto | 🟢 Pronto para registrar |
+
+Razonetes gerados automaticamente para cada conta movimentada, com saldo calculado na natureza correta. Mini-diário com todos os lançamentos registrados, identificados por tipo (SIMPLES / COMPOSTO / MISTO).
+
+### 📦 Controle de Estoque
+- Registro de entradas e saídas com histórico.
+- Cálculo automático da **ficha de estoque** nos três métodos:
+  - **PEPS** — Primeiro a Entrar, Primeiro a Sair (aceito pelo CPC 16)
+  - **UEPS** — Último a Entrar, Primeiro a Sair (apenas didático; não aceito no Brasil desde 2008)
+  - **Custo Médio Ponderado Móvel** (aceito pelo CPC 16)
+- **Comparativo** lado a lado: CMV e estoque final por método.
+- Nota regulatória embutida (CPC 16 / IAS 2).
+- Exemplo clássico pré-carregado com 3 lotes e 2 saídas.
 
 ---
 
-## Requisitos
+## Tecnologias
 
-- **Node.js 18+** (testado com Node 22 — `node -v` para verificar).
-- **VS Code** (recomendado) com as extensões ESLint e Prettier.
+| Camada | Tecnologia |
+|--------|------------|
+| UI | React 18 + Vite 5 |
+| Visual | CSS Bootstrap-like (sem dependência externa) |
+| Ícones | lucide-react |
+| Persistência | `window.storage` (shim sobre `localStorage`) |
+| CI/CD | GitHub Actions → GitHub Pages |
+| Hospedagem | Vercel (deploy automático por push) |
 
 ---
 
-## Instalação e execução
+## Instalação local
 
-```powershell
-# 1. Entre na pasta do projeto
+**Requisitos:** Node.js 18+ (testado com Node 22).
+
+```bash
+git clone https://github.com/tamashiroBR/contaviva-edu.git
 cd contaviva-edu
-
-# 2. Instale as dependências (só na primeira vez)
 npm install
-
-# 3. Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-Abra o endereço exibido no terminal (normalmente `http://localhost:5173`).
-
-O progresso dos exercícios é salvo automaticamente no `localStorage` do navegador.
-Para zerar o progresso, abra o Console do navegador (`F12`) e execute:
-```js
-localStorage.removeItem("edu_progresso")
-```
+Abra `http://localhost:5173`.
 
 ---
 
-## Build de produção
+## Scripts disponíveis
 
-```powershell
-npm run build
+```bash
+npm run dev      # servidor de desenvolvimento com hot-reload
+npm run build    # build de produção → pasta dist/
+npm run preview  # pré-visualizar o build localmente
 ```
-
-Os arquivos estáticos ficam em `dist/` e podem ser servidos em qualquer
-hospedagem estática (Netlify, Vercel, GitHub Pages, etc.).
 
 ---
 
@@ -80,119 +109,71 @@ hospedagem estática (Netlify, Vercel, GitHub Pages, etc.).
 
 ```
 contaviva-edu/
-├─ index.html          # ponto de entrada HTML
-├─ package.json        # dependências e scripts
-├─ vite.config.js      # configuração do Vite
-├─ .gitignore
-├─ README.md
-└─ src/
-   ├─ main.jsx         # bootstrap React + shim de window.storage
-   └─ App.jsx          # aplicação ContaViva Edu completa
-                       #   ├─ Conceitos
-                       #   ├─ Laboratório de Razonetes (+ balança patrimonial)
-                       #   └─ Exercícios com correção e progresso
+├─ .github/
+│  └─ workflows/
+│     └─ deploy.yml      # CI/CD → GitHub Pages (build automático no push)
+├─ src/
+│  ├─ App.jsx            # toda a aplicação (Conceitos + Razonetes + Estoque)
+│  └─ main.jsx           # bootstrap React + shim window.storage → localStorage
+├─ index.html
+├─ package.json
+├─ vite.config.js        # base path configurável via VITE_BASE_PATH
+├─ vercel.json           # rewrite SPA para Vercel
+└─ README.md
 ```
 
 ---
 
-## Depurar no VS Code
+## Deploy
 
-1. `Arquivo > Abrir Pasta` → selecione `contaviva-edu`.
-2. Abra o terminal integrado com `Ctrl + '`.
-3. `npm run dev` e abra o navegador.
-4. Para breakpoints no código React, instale a extensão **Debugger for Chrome**
-   (ou use o DevTools do navegador com source maps do Vite).
+### Vercel (recomendado)
+
+1. Acesse [vercel.com/new](https://vercel.com/new) → importe `tamashiroBR/contaviva-edu`.
+2. Vercel detecta Vite automaticamente — clique **Deploy**.
+3. Todo `git push` na `main` publica uma nova versão.
+
+URL de produção: **<https://contaviva-edu.vercel.app>**
+
+### GitHub Pages
+
+O workflow `.github/workflows/deploy.yml` faz o build e o deploy a cada push.
+
+Ative em: **Settings → Pages → Source → GitHub Actions**
+
+URL: **<https://tamashirobr.github.io/contaviva-edu/>**
+
+> Se renomear o repositório, atualize `VITE_BASE_PATH` no workflow.
 
 ---
 
-## Customizar os exercícios
+## Customizar o plano de contas
 
-Edite o array `EXERCICIOS` em `src/App.jsx`:
+Edite o array `CONTAS` em `src/App.jsx`:
 
 ```js
-const EXERCICIOS = [
-  {
-    id: 9,                                          // ID único
-    enunciado: "Descrição do fato contábil.",       // enunciado para o aluno
-    valor: 10000,                                   // valor do fato
-    d: "caixa",                                     // código da conta a débito
-    c: "receita",                                   // código da conta a crédito
-    expl: "Explicação pedagógica da resposta.",     // feedback após acertar
-  },
-  // ...
-];
+{ cod: "minhaconta", nome: "Minha Conta", grupo: "Ativo", nat: "D" }
 ```
 
-As contas disponíveis estão no array `CONTAS` (também em `App.jsx`).
-Para adicionar novas contas, inclua um objeto `{ cod, nome, grupo, nat }`:
-- `grupo`: `"Ativo"`, `"Passivo"`, `"PL"`, `"Receita"` ou `"Despesa"`.
-- `nat`: `"D"` (devedora) ou `"C"` (credora).
+- `grupo`: `"Ativo"` | `"Passivo"` | `"PL"` | `"Receita"` | `"Despesa"`
+- `nat`: `"D"` (devedora) | `"C"` (credora)
 
 ---
 
-## Relação com o ContaViva (versão profissional)
+## Customizar os exemplos do laboratório
 
-Este projeto é **independente**. A versão profissional (`contaviva/`) inclui
-escrituração multiempresa, balancete, livro razão, diário e exportação ECD (SPED
-Contábil, leiaute 9). O Edu é focado exclusivamente no ensino dos fundamentos.
+Edite o array `PRESETS_MISTO` em `src/App.jsx`:
+
+```js
+{
+  txt: "Descrição curta (aparece no botão)",
+  historico: "Histórico completo do lançamento",
+  d: [{ conta: "bancos", valor: 10000 }],        // um ou mais débitos
+  c: [{ conta: "capital", valor: 10000 }],       // um ou mais créditos
+}
+```
 
 ---
 
-## Deploy no GitHub Pages
+## Licença
 
-O projeto inclui um workflow do **GitHub Actions** que faz o build e o deploy automaticamente a cada `git push` na branch `main`.
-
-### Passo a passo
-
-**1. Criar o repositório no GitHub**
-```
-github.com → New repository → nome: contaviva-edu → Create
-```
-
-**2. Enviar o código**
-```powershell
-cd contaviva-edu
-git init
-git add .
-git commit -m "feat: ContaViva Edu inicial"
-git branch -M main
-git remote add origin https://github.com/SEU_USUARIO/contaviva-edu.git
-git push -u origin main
-```
-
-**3. Ativar o GitHub Pages**
-```
-Repositório → Settings → Pages
-Source: GitHub Actions   ← selecione esta opção
-```
-
-**4. Ajustar o nome do repositório no workflow** *(se necessário)*
-
-Abra `.github/workflows/deploy.yml` e altere a linha:
-```yaml
-VITE_BASE_PATH: /contaviva-edu/
-```
-para corresponder ao nome exato do seu repositório. Se o repositório se
-chamar `minha-plataforma`, coloque `/minha-plataforma/`.
-
-**Casos especiais:**
-- Repositório `seu-usuario.github.io` (user page) → `VITE_BASE_PATH: /`
-- Repositório de organização `org.github.io` → idem
-
-**5. Acompanhar o deploy**
-```
-Repositório → Actions → Deploy — GitHub Pages
-```
-O link final aparece em **Settings → Pages** após o primeiro deploy (≈ 1 min).
-
-### URL resultante
-```
-https://SEU_USUARIO.github.io/contaviva-edu/
-```
-
-### Deploy manual (alternativa sem Actions)
-```powershell
-npm run build              # gera a pasta dist/
-# suba o conteúdo de dist/ para a branch gh-pages manualmente,
-# ou use: npx gh-pages -d dist
-```
+MIT — livre para uso educacional e comercial.
