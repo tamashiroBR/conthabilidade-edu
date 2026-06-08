@@ -67,19 +67,6 @@ Razonetes gerados automaticamente para cada conta movimentada, com saldo calcula
 
 ---
 
-## Tecnologias
-
-| Camada | Tecnologia |
-|--------|------------|
-| UI | React 18 + Vite 5 |
-| Visual | CSS Bootstrap-like (sem dependência externa) |
-| Ícones | lucide-react |
-| Persistência | `window.storage` (shim sobre `localStorage`) |
-| CI/CD | GitHub Actions → GitHub Pages |
-| Hospedagem | Vercel (deploy automático por push) |
-
----
-
 ## Instalação local
 
 **Requisitos:** Node.js 18+ (testado com Node 22).
@@ -133,16 +120,6 @@ contaviva-edu/
 3. Todo `git push` na `main` publica uma nova versão.
 
 URL de produção: **<https://contaviva-edu.vercel.app>**
-
-### GitHub Pages
-
-O workflow `.github/workflows/deploy.yml` faz o build e o deploy a cada push.
-
-Ative em: **Settings → Pages → Source → GitHub Actions**
-
-URL: **<https://tamashirobr.github.io/contaviva-edu/>**
-
-> Se renomear o repositório, atualize `VITE_BASE_PATH` no workflow.
 
 ---
 
