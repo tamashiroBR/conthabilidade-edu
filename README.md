@@ -96,9 +96,6 @@ npm run preview  # pré-visualizar o build localmente
 
 ```
 contaviva-edu/
-├─ .github/
-│  └─ workflows/
-│     └─ deploy.yml      # CI/CD → GitHub Pages (build automático no push)
 ├─ src/
 │  ├─ App.jsx            # toda a aplicação (Conceitos + Razonetes + Estoque)
 │  └─ main.jsx           # bootstrap React + shim window.storage → localStorage
