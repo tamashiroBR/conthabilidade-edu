@@ -742,7 +742,7 @@ function Estoque() {
         </div>
 
         <div style={{display:'flex',flexDirection:'column',gap:8}}>
-          <div style={{display:'grid',gridTemplateColumns:'96px 1fr 1fr',gap:8}}>
+          <div className="mov-row1">
             <select value={form.tipo} onChange={e=>setForm(f=>({...f,tipo:e.target.value}))} className="est-sel">
               <option value="E">Entrada</option>
               <option value="S">Saída</option>
@@ -750,7 +750,7 @@ function Estoque() {
             <input type="date" value={form.data} onChange={e=>setForm(f=>({...f,data:e.target.value}))} className="est-inp"/>
             <input placeholder="Histórico" value={form.descricao} onChange={e=>setForm(f=>({...f,descricao:e.target.value}))} className="est-inp"/>
           </div>
-          <div style={{display:'grid',gridTemplateColumns:form.tipo==='E'?'1fr 1fr auto':'1fr auto',gap:8}}>
+          <div className="mov-row2" style={{gridTemplateColumns:form.tipo==='E'?'1fr 1fr auto':'1fr auto'}}>
             <input inputMode="decimal" placeholder="Quantidade" value={form.qtd}
               onChange={e=>setForm(f=>({...f,qtd:e.target.value}))} className="est-inp"/>
             {form.tipo === 'E' && (
@@ -765,15 +765,21 @@ function Estoque() {
           <div className="mov-lista">
             {[...movs].sort((a,b)=>a.data.localeCompare(b.data)).map(m => (
               <div key={m.id} className={`mov-item ${m.tipo==='E'?'ent':'sai'}`}>
-                <span className={`dc ${m.tipo==='E'?'dc-d':'dc-c'}`} style={{fontSize:11,padding:'3px 8px'}}>
-                  {m.tipo==='E'?'ENTRADA':'SAÍDA'}
-                </span>
-                <span className="mono" style={{fontSize:12,color:'#3a7c6e',whiteSpace:'nowrap'}}>{fmtDt(m.data)}</span>
-                <span style={{flex:1,fontSize:13}}>{m.descricao}</span>
-                <span className="mono" style={{fontSize:13,whiteSpace:'nowrap'}}>
-                  {fmtN(m.qtd)} un{m.tipo==='E'?' · R$ '+fmtN(m.valorUnit):''}
-                </span>
-                <button className="est-del" onClick={()=>remMov(m.id)}><Trash2 size={13}/></button>
+                {/* linha 1: badge + data + botão excluir */}
+                <div className="mov-item-t">
+                  <span className={`dc ${m.tipo==='E'?'dc-d':'dc-c'}`} style={{fontSize:11,padding:'3px 8px'}}>
+                    {m.tipo==='E'?'ENTRADA':'SAÍDA'}
+                  </span>
+                  <span className="mono" style={{fontSize:12,color:'#3a7c6e'}}>{fmtDt(m.data)}</span>
+                  <button className="est-del" onClick={()=>remMov(m.id)}><Trash2 size={13}/></button>
+                </div>
+                {/* linha 2: histórico (esquerda) + qtd·valor (direita) */}
+                <div className="mov-item-b">
+                  <span className="mov-desc">{m.descricao}</span>
+                  <span className="mono mov-val">
+                    {fmtN(m.qtd)} un{m.tipo==='E'?' · R$ '+fmtN(m.valorUnit):''}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -1181,8 +1187,13 @@ const CSS = `
   cursor:pointer;padding:.25rem;border-radius:.25rem;display:inline-flex;}
 .est-del:hover{color:var(--bs-red);background:#f8d7da;}
 .mov-lista{display:flex;flex-direction:column;gap:.375rem;margin-top:.875rem;}
-.mov-item{display:flex;align-items:center;gap:.625rem;padding:.5rem .75rem;
+.mov-item{display:flex;flex-direction:column;gap:4px;padding:.5rem .75rem;
   border-radius:.375rem;font-size:.8125rem;border:1px solid;}
+.mov-item-t{display:flex;align-items:center;gap:6px;}
+.mov-item-t .est-del{margin-left:auto;}
+.mov-item-b{display:flex;align-items:center;justify-content:space-between;gap:6px;}
+.mov-desc{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;}
+.mov-val{flex-shrink:0;white-space:nowrap;font-size:13px;}
 .mov-item.ent{background:#e7f3ff;border-color:#b6d4fe;}
 .mov-item.sai{background:#fff5f5;border-color:#f1aeb5;}
 .met-tabs{display:flex;gap:.25rem;}
@@ -1219,6 +1230,10 @@ const CSS = `
 .comp-item span{color:var(--bs-gray-600);}
 .comp-item.total span,.comp-item.total b{font-weight:700;color:var(--bs-gray-900);font-size:.875rem;}
 
+/* ── FORMULÁRIO DE MOVIMENTAÇÕES ─────────────────────────────────── */
+.mov-row1{display:grid;grid-template-columns:96px 1fr 1fr;gap:8px;}
+.mov-row2{display:grid;gap:8px;}
+
 /* ── RESPONSIVE ──────────────────────────────────────────────────── */
 @media(max-width:620px){
   .cards-2{grid-template-columns:1fr;}
@@ -1227,6 +1242,20 @@ const CSS = `
   .split-row{grid-template-columns:1fr 80px auto;}
   .comp-grid{grid-template-columns:1fr;}
   .met-tabs{flex-wrap:wrap;}
+
+  /* formulário de movimentações */
+  .mov-row1{grid-template-columns:1fr 1fr;}
+  .mov-row1 .est-inp:last-child{grid-column:1/-1;}
+  .mov-row2{grid-template-columns:1fr !important;}
+  .mov-row2 .btn{width:100%;}
+
+  /* card: não expande além da viewport; ficha-wrap faz scroll interno */
+  .card{min-width:0;overflow:hidden;}
+  .ficha-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+  /* mov-item: layout já é coluna no base — sem overrides necessários */
+  .mov-desc{font-size:12px;}
+  .mov-val{font-size:11px;}
 }
 
 `;
